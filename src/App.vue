@@ -1,15 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <BagImage :ended="ended"/>
+  <BagHealth :health="health"/>
+  <GameController v-on:health="healthFunc($event)" v-on:ended="endedFunc($event)"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BagImage from './components/BagImage.vue';
+import BagHealth from './components/BagHealth.vue';
+import GameController from './components/GameController.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BagImage,
+    BagHealth,
+    GameController
+  },
+  data(){
+    return {
+      health : 100,
+      ended  : false
+    }
+  },
+  methods : {
+    healthFunc(value){
+      this.health = value;
+    },
+    endedFunc(value){
+      this.ended = value;
+    }
   }
 }
 </script>
